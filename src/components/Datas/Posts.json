@@ -1,0 +1,7 @@
+[
+    {"post_id":1, "title":"Name of book 1", "desc":"Desctiption of book 1", "create_date":"2014-02-27T10:00:00","img":"https://hoctiengnhatuytin.com/images/tieng-nhat/anime.jpg"},
+    {"post_id":2, "title":"Name of book 2", "desc":"Desctiption of book 2", "create_date":"2014-02-27T10:00:00", "img":"https://hoctiengnhatuytin.com/images/tieng-nhat/anime.jpg"},
+    {"post_id":3, "title":"Name of book 3", "desc":"Desctiption of book 3", "create_date":"2014-02-27T10:00:00", "img":"https://hoctiengnhatuytin.com/images/tieng-nhat/anime.jpg"},
+    {"post_id":4, "title":"Name of book 4", "desc":"Desctiption of book 4", "create_date":"2014-02-27T10:00:00", "img":"https://hoctiengnhatuytin.com/images/tieng-nhat/anime.jpg"},
+    {"post_id":5, "title":"Name of book 5", "desc":"Desctiption of book 5", "create_date":"2014-02-27T10:00:00", "img":"https://hoctiengnhatuytin.com/images/tieng-nhat/anime.jpg"}
+]
