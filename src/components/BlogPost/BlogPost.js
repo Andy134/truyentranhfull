@@ -14,7 +14,7 @@ class BlogPost extends Component {
                     <h2 className="card-title">{post.title}</h2>
                     <p className="card-text">{post.desc}</p>
                     {/* <a href="#" className="btn btn-primary">Read More &rarr;</a> */}
-                    <Link to={`/post/${post.post_id}`} className="btn btn-primary">Read More &rarr;</Link>
+                    <Link to={`/post/${post.post_id}`} className="btn btn-secondary">Read More &rarr;</Link>
                 </div>
                 <div className="card-footer text-muted">
                     Posted on {moment(post.create_date).format('DD-MM-YYYY')} by <a href="#">Start Bootstrap</a>

@@ -8,7 +8,7 @@ class SidebarWidget extends Component {
 
                 {/* <!-- Search Widget --> */}
                 <div className="card my-4">
-                    <h5 className="card-header">Search</h5>
+                    <h5 className="card-header text-white bg-dark">Search</h5>
                     <div className="card-body">
                         <div className="input-group">
                             <input type="text" className="form-control" placeholder="Search for..." />
@@ -21,7 +21,7 @@ class SidebarWidget extends Component {
 
                 {/* <!-- Categories Widget --> */}
                 <div className="card my-4">
-                    <h5 className="card-header">Categories</h5>
+                    <h5 className="card-header text-white bg-dark">Categories</h5>
                     <div className="card-body">
                         <div className="row">
                             <div className="col-lg-6">
@@ -56,7 +56,7 @@ class SidebarWidget extends Component {
 
                 {/* <!-- Side Widget --> */}
                 <div className="card my-4">
-                    <h5 className="card-header">Side Widget</h5>
+                    <h5 className="card-header text-white bg-dark">Side Widget</h5>
                     <div className="card-body">
                         You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
                     </div>

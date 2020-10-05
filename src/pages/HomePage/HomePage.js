@@ -42,14 +42,10 @@ class HomePage extends Component {
                             {listBlogPost}
                             {/* <!-- Pagination --> */}
                             <ul className="pagination justify-content-center mb-4">
-                                <li className="page-item">
-                                    <a className="page-link" href="#">&larr; Older</a>
-                                </li>
-                                <li className="page-item disabled">
-                                    <a className="page-link" href="#">Newer &rarr;</a>
-                                </li>
+                                <button type="button" className="btn btn-outline-secondary">&larr; Older</button>
+                                &nbsp;
+                                <button type="button" className="btn btn-outline-secondary">Newer &rarr;</button>
                             </ul>
-
                         </div>
                         {/* <!-- Sidebar Widgets Column --> */}
                         <SidebarWidget />

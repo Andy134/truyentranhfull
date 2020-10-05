@@ -8,8 +8,8 @@ const menus = [
         exact: true
     },
     {
-        name: 'Post',
-        to: '/post',
+        name: 'Category',
+        to: '/category',
         exact: false
     },
     {

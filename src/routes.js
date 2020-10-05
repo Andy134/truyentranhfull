@@ -2,8 +2,10 @@ import React from 'react';
 import HomePage from './pages/HomePage/HomePage';
 import Post from './pages/Post/Post';
 import NotFound from './pages/NotFound/NotFound';
-import ProductListPage from './pages/ProductListPage/ProductListPage';
-import ProductActionPage from './pages/ProductActionPage/ProductActionPage';
+import Category from './pages/Category/Category';
+// import ProductListPage from './pages/ProductListPage/ProductListPage';
+// import ProductActionPage from './pages/ProductActionPage/ProductActionPage';
+import About from './pages/About/About';
 
 const routes = [
     {
@@ -17,20 +19,30 @@ const routes = [
         main: ({ match, history }) => <Post match={match} history={history}/>
     },
     {
-        path: '/product-list',
+        path: '/about',
         exact: false,
-        main: () => <ProductListPage />
+        main: () => <About/>
     },
     {
-        path: '/product/add',
+        path: '/category',
         exact: false,
-        main: ({ location, history }) => <ProductActionPage location={location} history={history} />
+        main: () => <Category/>
     },
-    {
-        path: '/product/:id/edit',
-        exact: false,
-        main: ({ match, history }) => <ProductActionPage match={match} history={history} />
-    },
+    // {
+    //     path: '/product-list',
+    //     exact: false,
+    //     main: () => <ProductListPage />
+    // },
+    // {
+    //     path: '/product/add',
+    //     exact: false,
+    //     main: ({ location, history }) => <ProductActionPage location={location} history={history} />
+    // },
+    // {
+    //     path: '/product/:id/edit',
+    //     exact: false,
+    //     main: ({ match, history }) => <ProductActionPage match={match} history={history} />
+    // },
     {
         path: '',
         exact: false,
