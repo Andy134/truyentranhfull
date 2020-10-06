@@ -3,6 +3,7 @@ import HomePage from './pages/HomePage/HomePage';
 import Post from './pages/Post/Post';
 import NotFound from './pages/NotFound/NotFound';
 import Category from './pages/Category/Category';
+import PostCategory from './pages/PostCategory/PostCategory';
 // import ProductListPage from './pages/ProductListPage/ProductListPage';
 // import ProductActionPage from './pages/ProductActionPage/ProductActionPage';
 import About from './pages/About/About';
@@ -25,8 +26,13 @@ const routes = [
     },
     {
         path: '/category',
-        exact: false,
+        exact: true,
         main: () => <Category/>
+    },
+    {
+        path: '/category/:id',
+        exact: false,
+        main: ({ match, history }) => <PostCategory match={match} history={history}/>
     },
     // {
     //     path: '/product-list',

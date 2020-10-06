@@ -1,7 +1,8 @@
 import * as Types from '../constants/ActionType';
 import callApi from '../utils/apiCaller';
 
-import posts from '../components/Datas/Posts.json'
+import posts from '../components/Datas/Posts.json';
+import categories from '../components/Datas/Categories.json';
 
 // POSTS
 
@@ -29,6 +30,36 @@ export const actGetPost = (posts, id) => {
         type: Types.GET_POST,
         posts,
         id
+    }
+}
+
+// CATEGORIES
+
+export const actFetchCategoryRequest = () => {
+    return (dispatch) => {
+        dispatch(actFetchCategory(categories));
+    }
+}
+
+export const actFetchCategory = (categories) => {
+    return {
+        type: Types.FETCH_CATEGORIES,
+        categories
+    }
+}
+
+
+export const actFetchPostsByCategoryRequest = (catId) => {
+    return (dispatch) => {
+        dispatch(actFetchPostsByCategory(posts, catId));
+    }
+}
+
+export const actFetchPostsByCategory = (posts, catId) => {
+    return {
+        type: Types.FETCH_BY_CATEGORIES,
+        posts,
+        catId
     }
 }
 

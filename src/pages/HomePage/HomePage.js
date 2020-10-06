@@ -27,7 +27,7 @@ class HomePage extends Component {
     render() {
         var { posts } = this.props;
         if (posts.length > 0) {
-            var listBlogPost = posts.map((post, index) => {
+            var ListBlogPost = posts.map((post, index) => {
                 return (<BlogPost post={post} key={index} />);
             })
         }
@@ -38,8 +38,8 @@ class HomePage extends Component {
                     <div className="row">
                         {/* <!-- Blog Entries Column--> */}
                         <div className="col-md-8">
-                            <h1 className="my-4">Page Heading <small>Secondary Text</small></h1>
-                            {listBlogPost}
+                            <h1 className="my-4">Homepage <small>Secondary Text</small></h1>
+                            {ListBlogPost}
                             {/* <!-- Pagination --> */}
                             <ul className="pagination justify-content-center mb-4">
                                 <button type="button" className="btn btn-outline-secondary">&larr; Older</button>

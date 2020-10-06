@@ -1,7 +1,28 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { actFetchCategoryRequest } from '../../actions/index';
 
 class SidebarWidget extends Component {
+
+    componentDidMount() {
+        this.props.fetchCategoryRequest();
+    }
+
     render() {
+        var { category } = this.props;
+        if (category && category.length > 0) {
+            var ListCategory = category.map((cat, index) => {
+                return (
+                    <div key={index} className="col-lg-6">
+                        <div className="list-unstyled mb-0">
+                            <li>
+                                <a href={`/category/${cat.category_id}`}>{cat.name.toUpperCase()}</a>
+                            </li>
+                        </div>
+                    </div>
+                );
+            })
+        }
         return (
             // <!-- Sidebar Widgets Column -->
             <div className="col-md-4">
@@ -24,32 +45,7 @@ class SidebarWidget extends Component {
                     <h5 className="card-header text-white bg-dark">Categories</h5>
                     <div className="card-body">
                         <div className="row">
-                            <div className="col-lg-6">
-                                <ul className="list-unstyled mb-0">
-                                    <li>
-                                        <a href="#">Web Design</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">HTML</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Freebies</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="col-lg-6">
-                                <ul className="list-unstyled mb-0">
-                                    <li>
-                                        <a href="#">JavaScript</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">CSS</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tutorials</a>
-                                    </li>
-                                </ul>
-                            </div>
+                            {ListCategory}
                         </div>
                     </div>
                 </div>
@@ -67,4 +63,19 @@ class SidebarWidget extends Component {
     }
 }
 
-export default SidebarWidget;
+const mapStateToProps = state => {
+    return {
+        category: state.category
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchCategoryRequest: () => {
+            dispatch(actFetchCategoryRequest());
+        }
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SidebarWidget);
