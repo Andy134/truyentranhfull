@@ -7,6 +7,7 @@ import PostCategory from './pages/PostCategory/PostCategory';
 // import ProductListPage from './pages/ProductListPage/ProductListPage';
 // import ProductActionPage from './pages/ProductActionPage/ProductActionPage';
 import About from './pages/About/About';
+import Search from './pages/Search/Search';
 
 const routes = [
     {
@@ -33,6 +34,11 @@ const routes = [
         path: '/category/:id',
         exact: false,
         main: ({ match, history }) => <PostCategory match={match} history={history}/>
+    },
+    {
+        path: '/search',
+        exact: true,
+        main: ({ match, location }) => <Search match={match} location={location}/>
     },
     // {
     //     path: '/product-list',

@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actFetchCategoryRequest } from '../../actions/index';
 import { Redirect } from 'react-router-dom';
-import queryString from 'query-string';
 
-class SidebarWidget extends Component {
+class SearchSidebar extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             loading: true,
             searchKey: '',
-            redirectToSearch: false
+            searchProcess: false
         };
     }
 
@@ -19,30 +18,25 @@ class SidebarWidget extends Component {
         this.props.fetchCategoryRequest();
     }
 
-    handleSearchKey = (e) => {
+    handleSearchKey = (e) =>{
         var target = e.target;
         var value = target.value;
         this.setState({
-            searchKey: value
+            searchKey : value
         })
     }
 
-    handleSearchSubmit = () => {
-        if (this.props.isSearch) {
-            const parsed = queryString.parse(this.props.location.search);
-            // TODO
-        }
-        else {
-            this.setState({
-                redirectToSearch: true
-            })
-        }
-
+    handleSearchSubmit=()=>{
+        // window.location.href = '/search?key='+ this.state.searchKey
+        this.setState({
+            searchProcess : true
+        })
     }
+
 
     render() {
 
-        if (this.state.redirectToSearch) {
+        if (this.state.searchProcess) {
             return <Redirect push to={`/search?key=${this.state.searchKey}`} />;
         }
 
@@ -115,4 +109,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SidebarWidget);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchSidebar);
