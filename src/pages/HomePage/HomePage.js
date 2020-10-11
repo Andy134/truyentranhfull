@@ -32,16 +32,12 @@ class HomePage extends Component {
             })
         }
         return (
-            // <!-- Page Content -->
             <div className="container">
-
                 <div className="row">
-                    {/* <!-- Blog Entries Column--> */}
                     {(!this.state.loading) ?
                         <div className="col-md-8">
-                            <h1 className="my-4">Homepage <small>Secondary Text</small></h1>
+                            <div style={{marginTop:'24px'}}></div>
                             {ListBlogPost}
-                            {/* <!-- Pagination --> */}
                             <ul className="pagination justify-content-center mb-4">
                                 <button type="button" className="btn btn-outline-secondary">&larr; Older</button>
                                 &nbsp;
@@ -49,12 +45,10 @@ class HomePage extends Component {
                             </ul>
                         </div>
                         :
-                        ''
+                        <Loading loading={this.state.loading} />
                     }
-                    {/* <!-- Sidebar Widgets Column --> */}
                     <SidebarWidget/>
                 </div>
-                <Loading loading={this.state.loading} />
             </div>
         );
     }

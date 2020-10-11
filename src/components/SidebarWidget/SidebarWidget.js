@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actFetchCategoryRequest } from '../../actions/index';
-import { Redirect } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import base64 from 'base-64';
 import queryString from 'query-string';
 
 class SidebarWidget extends Component {
@@ -10,13 +11,24 @@ class SidebarWidget extends Component {
         super(props);
         this.state = {
             loading: true,
-            searchKey: '',
-            redirectToSearch: false
+            searchKey: ''
         };
     }
 
+    _getparseDecode() {
+        var {pathname, search} =  this.props.location;
+        var parse = queryString.parse(search)
+        if (pathname==='/search' && parse.key) {
+            var parseDecode = base64.decode(parse.key);
+        }
+        return parseDecode;
+    }
+
     componentDidMount() {
-        this.props.fetchCategoryRequest();
+        this.setState({
+            searchKey: this._getparseDecode()
+        });
+        this.props.actFetchCategoryRequest();
     }
 
     handleSearchKey = (e) => {
@@ -28,24 +40,16 @@ class SidebarWidget extends Component {
     }
 
     handleSearchSubmit = () => {
-        if (this.props.isSearch) {
-            const parsed = queryString.parse(this.props.location.search);
-            // TODO
-        }
-        else {
-            this.setState({
-                redirectToSearch: true
-            })
-        }
+        this.props.history.push(`/search?key=${base64.encode(this.state.searchKey)}`);
+    }
 
+    handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            this.props.history.push(`/search?key=${base64.encode(this.state.searchKey)}`);
+        }
     }
 
     render() {
-
-        if (this.state.redirectToSearch) {
-            return <Redirect push to={`/search?key=${this.state.searchKey}`} />;
-        }
-
         var { category } = this.props;
         if (category && category.length > 0) {
             var ListCategory = category.map((cat, index) => {
@@ -53,7 +57,7 @@ class SidebarWidget extends Component {
                     <div key={index} className="col-lg-6">
                         <div className="list-unstyled mb-0">
                             <li>
-                                <a href={`/category/${cat.category_id}`}>{cat.name.toUpperCase()}</a>
+                                <Link to={`/category/${cat.category_id}`}>{cat.name.toUpperCase()}</Link>
                             </li>
                         </div>
                     </div>
@@ -63,20 +67,22 @@ class SidebarWidget extends Component {
         return (
             // <!-- Sidebar Widgets Column -->
             <div className="col-md-4">
-
                 {/* <!-- Search Widget --> */}
                 <div className="card my-4">
                     <h5 className="card-header text-white bg-dark">Search</h5>
                     <div className="card-body">
                         <div className="input-group">
-                            <input type="text" className="form-control" placeholder="Search for..." value={this.state.searchKey} onChange={this.handleSearchKey} />
+                            <input type="text" className="form-control" placeholder="Search for..."
+                                value={this.state.searchKey}
+                                onChange={this.handleSearchKey}
+                                onKeyDown={this.handleKeyDown}
+                            />
                             <span className="input-group-append">
                                 <button className="btn btn-secondary" type="button" onClick={this.handleSearchSubmit}>Go!</button>
                             </span>
                         </div>
                     </div>
                 </div>
-
                 {/* <!-- Categories Widget --> */}
                 <div className="card my-4">
                     <h5 className="card-header text-white bg-dark">Categories</h5>
@@ -86,7 +92,6 @@ class SidebarWidget extends Component {
                         </div>
                     </div>
                 </div>
-
                 {/* <!-- Side Widget --> */}
                 <div className="card my-4">
                     <h5 className="card-header text-white bg-dark">Side Widget</h5>
@@ -94,7 +99,6 @@ class SidebarWidget extends Component {
                         You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
                     </div>
                 </div>
-
             </div>
         );
     }
@@ -108,11 +112,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchCategoryRequest: () => {
+        actFetchCategoryRequest: () => {
             dispatch(actFetchCategoryRequest());
         }
     }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SidebarWidget);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SidebarWidget));

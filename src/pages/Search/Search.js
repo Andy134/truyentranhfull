@@ -1,26 +1,44 @@
 import React, { Component } from 'react';
 import SidebarWidget from './../../components/SidebarWidget/SidebarWidget';
 import { connect } from 'react-redux';
-import { actFetchPostsRequest } from '../../actions/index';
+import { actFetchSearchPostRequest } from '../../actions/index';
 import Loading from './../../components/Loading/Loading';
 import SearchPost from './../../components/SearchPost/SearchPost';
+import base64 from 'base-64';
+import queryString from 'query-string';
 
 class Search extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            loading: true
+            loading: true,
+            key: ''
         };
     }
 
     componentDidMount() {
-        this.props.fetchPostsRequest();
+        this.props.actFetchSearchPostRequest(this._getparseDecode());
         if (this.props.posts) {
             this.setState({
-                loading: false
+                loading: false,
             })
         }
+    }
+
+    componentDidUpdate(preProps) {
+        if (preProps.location != this.props.location) {
+            this.props.actFetchSearchPostRequest(this._getparseDecode());
+        }
+    }
+
+    _getparseDecode(){
+        var parse = queryString.parse(this.props.location.search)
+        var parseDecode = base64.decode(parse.key);
+        this.setState({
+            key: parseDecode
+        })
+        return parseDecode;
     }
 
     render() {
@@ -30,24 +48,36 @@ class Search extends Component {
                 return (<SearchPost post={post} key={index} />);
             })
         }
+    var searchKeyTitle = (<h1 className="my-4">Search: <small style={{color: 'tomato'}} >{this.state.key}</small></h1>)
         return (
             <div className="container">
                 <div className="row">
                     {(!this.state.loading) ?
                         <div className="col-md-8">
-                            <h1 className="my-4">Search <small></small></h1>
-                            <div className="row">
-                                {ListSearchItem}
-                            </div>
-                            <ul className="pagination justify-content-center mb-4">
-                                <button type="button" className="btn btn-outline-secondary">&larr; Older</button>
-                                &nbsp;
-                                <button type="button" className="btn btn-outline-secondary">Newer &rarr;</button>
-                            </ul>
+                            {(this.props.posts.length > 0)
+                                ?
+                                <div id="haveData">
+                                    {searchKeyTitle}
+                                    <div className="row">
+                                        {ListSearchItem}
+                                    </div>
+                                    <ul className="pagination justify-content-center mb-4">
+                                        <button type="button" className="btn btn-outline-secondary">&larr; Older</button>
+                                    &nbsp;
+                                    <button type="button" className="btn btn-outline-secondary">Newer &rarr;</button>
+                                    </ul>
+                                </div>
+                                :
+                                <div id="haveData">
+                                    {searchKeyTitle}
+                                    <p className="text-muted">No data found</p>
+                                </div>
+                            }
+
                         </div>
                         :
                         ''}
-                    <SidebarWidget location={this.props.location} isSearch={true}/>
+                    <SidebarWidget/>
                 </div>
                 <Loading loading={this.state.loading} />
             </div>
@@ -57,14 +87,14 @@ class Search extends Component {
 
 const mapStateToProps = state => {
     return {
-        posts: state.posts
+        posts: state.searchPost
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchPostsRequest: () => {
-            dispatch(actFetchPostsRequest());
+        actFetchSearchPostRequest: (key) => {
+            dispatch(actFetchSearchPostRequest(key));
         }
     }
 }

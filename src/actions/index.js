@@ -33,6 +33,20 @@ export const actGetPost = (posts, id) => {
     }
 }
 
+export const actFetchSearchPostRequest = (key) => {
+    return (dispatch) => {
+        dispatch(actFetchSearchPost(posts, key));
+    }
+}
+
+export const actFetchSearchPost = (posts, key) => {
+    return {
+        type: Types.SEARCH_POST,
+        posts,
+        key
+    }
+}
+
 // CATEGORIES
 
 export const actFetchCategoryRequest = () => {

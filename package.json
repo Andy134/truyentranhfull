@@ -3,7 +3,8 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "axios": "^0.17.1",
+        "axios": "^0.20.0",
+        "base-64": "^0.1.0",
         "moment": "^2.29.1",
         "query-string": "^6.13.5",
         "react": "^16.13.1",

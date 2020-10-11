@@ -4,13 +4,15 @@ import itemEditing from './itemEditing';
 import posts from './posts';
 import postCategory from './postCategory';
 import category from './category';
+import searchPost from './searchPost';
 
 const appReducers = combineReducers({
     posts,
     products,
     itemEditing,
     postCategory,
-    category
+    category,
+    searchPost
 });
 
 export default appReducers;

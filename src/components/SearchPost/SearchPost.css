@@ -1,6 +1,9 @@
-.card-img-top, .card-title {
+.search-title, .img-top, .title, .desc {
     cursor: pointer ;
 }
-.card-title:hover {
+.title:hover {
     color: tomato;
+}
+.img-top:hover {
+    transform: scale(110%);
 }

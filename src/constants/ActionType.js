@@ -7,5 +7,8 @@ export const EDIT_PRODUCT = 'EDIT_PRODUCT';
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const ADD_POSTS = 'ADD_POSTS';
 export const GET_POST = 'GET_POST';
+export const SEARCH_POST = 'SEARCH_POST';
+
 export const FETCH_BY_CATEGORIES = 'FETCH_BY_CATEGORIES';
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
+export const FETCH_POST_CATEGORY= 'FETCH_POST_CATEGORY';

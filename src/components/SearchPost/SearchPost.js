@@ -24,16 +24,19 @@ class BlogPost extends Component {
         }
 
         return (
-            <div className="col-md-6">
+            <div className="col-md-12">
                 <div className="card mb-4">
-                    <img className="card-img-top" src={post.img} alt="Card image cap" onClick={this.showDetailAction} />
-                    <div className="card-body">
-                        <h3 className="card-title" onClick={this.showDetailAction}>{post.title}</h3>
-                        <p className="card-text">{post.desc}</p>
-                        <Link to={`/post/${post.post_id}`} className="btn btn-secondary">Read More &rarr;</Link>
-                    </div>
-                    <div className="card-footer text-muted">
-                        Posted on {moment(post.create_date).format('DD-MM-YYYY')} by <a href="#">Start Bootstrap</a>
+                    <div className="row p-1" >
+                        <div className="col-md-4">
+                            <img className="img-top" style={{ width: '100%', height: '100%' }} src={post.img} alt="Card image cap" onClick={this.showDetailAction} />
+                        </div>
+                        <div className="col-md-8">
+                            <h4 className="title" onClick={this.showDetailAction}>{post.title}</h4>
+                            <p className="desc" onClick={this.showDetailAction}>{post.desc}</p>
+                            <div className="text-muted mt-1">
+                                Posted on {moment(post.create_date).format('DD-MM-YYYY')} by <a href="#">Start Bootstrap</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
