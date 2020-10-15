@@ -1,0 +1,6 @@
+.card-img-top, .card-title {
+    cursor: pointer ;
+}
+.card-title:hover {
+    color: tomato;
+}

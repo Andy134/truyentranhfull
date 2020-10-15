@@ -28,7 +28,14 @@ class Search extends Component {
 
     componentDidUpdate(preProps) {
         if (preProps.location != this.props.location) {
-            this.props.actFetchSearchPostRequest(this._getparseDecode());
+            this.setState({
+                loading: true
+            },()=> this.props.actFetchSearchPostRequest(this._getparseDecode()))
+        }
+        if(preProps.posts != this.props.posts){
+            this.setState({
+                loading: false
+            })
         }
     }
 

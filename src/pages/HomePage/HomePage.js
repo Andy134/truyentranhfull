@@ -38,11 +38,11 @@ class HomePage extends Component {
                         <div className="col-md-8">
                             <div style={{marginTop:'24px'}}></div>
                             {ListBlogPost}
-                            <ul className="pagination justify-content-center mb-4">
+                            {/* <ul className="pagination justify-content-center mb-4">
                                 <button type="button" className="btn btn-outline-secondary">&larr; Older</button>
                                 &nbsp;
                                 <button type="button" className="btn btn-outline-secondary">Newer &rarr;</button>
-                            </ul>
+                            </ul> */}
                         </div>
                         :
                         <Loading loading={this.state.loading} />
